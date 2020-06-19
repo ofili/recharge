@@ -6,7 +6,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/ofili/recharge/handlers"
+	"github.com/ofili/recharge/controller"
 
 	"github.com/gorilla/mux"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
@@ -36,15 +36,15 @@ func main() {
 	router := mux.NewRouter()
 
 	// Send airtime
-	router.HandleFunc("/send", handlers.Send).Methods("POST")
+	router.HandleFunc("/send", controller.Send).Methods("POST")
 
 	// Get balance
-	router.HandleFunc("/balance", handlers.Balance).Methods("GET")
+	router.HandleFunc("/balance", controller.Balance).Methods("GET")
 
 	// Get interns
-	router.HandleFunc("/Intern", handlers.Intern).Methods("GET")
+	router.HandleFunc("/Intern", controller.Intern).Methods("GET")
 
-	handlers.InitDB()
+	controller.InitDB()
 
 	log.Fatal(http.ListenAndServe(":9000", router))
 
