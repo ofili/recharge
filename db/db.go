@@ -1,8 +1,8 @@
 package db
 
 import (
-	"recharge/handlers"
 	"fmt"
+	"github.com/ofili/recharge/handlers"
 	"log"
 
 	"github.com/jinzhu/gorm"
@@ -24,7 +24,7 @@ func InitDB() {
 
 	// Create table in database
 	db.HasTable(&handlers.Person{})
-	db.DropTableIfExists(&handlers.Person)
+	db.DropTableIfExists(&handlers.Person{})
 
 	// Migrateion to create table for recharge_db
 	db.AutoMigrate(&handlers.Person{})

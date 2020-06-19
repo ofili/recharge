@@ -5,11 +5,11 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
-	"recharge/handlers"
+
+	"github.com/ofili/recharge/handlers"
 
 	"github.com/gorilla/mux"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
-	"github.com/ofili/recharge/db"
 )
 
 func main() {
@@ -44,7 +44,7 @@ func main() {
 	// Get interns
 	router.HandleFunc("/Intern", handlers.Intern).Methods("GET")
 
-	db.InitDB()
+	handlers.InitDB()
 
 	log.Fatal(http.ListenAndServe(":9000", router))
 
